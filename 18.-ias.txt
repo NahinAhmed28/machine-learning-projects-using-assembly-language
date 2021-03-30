@@ -1,0 +1,93 @@
+.model small
+.stack 100h
+.data
+.code
+ main proc
+    
+    
+    
+ 
+    mov ah, 1
+    int 21h
+    mov bh, al
+     
+    xor cx, cx
+    add cx, 30h
+     
+   
+    while_:
+    mov ah, 1
+    int 21h
+    cmp al, 0dh
+    je print
+    cmp al, 32
+    je push_ 
+    
+    inc cx
+    jmp while_
+    
+    
+    
+    
+    
+    xor dl, dl 
+    add dl, 30h
+    
+   
+    
+    push_:
+          cmp dl, 001
+          je push2
+    
+    mov ah, 1
+    int 21h
+    mov bl, al
+    inc dl
+    jmp while_
+    
+    push2:
+    
+    mov ah, 1
+    int 21h
+    mov dh, al
+    jmp while_
+    
+    
+    
+    
+    
+    
+     
+     
+     print:
+     call newline
+     mov ah, 2
+     mov dl, bh
+     int 21h 
+     
+     mov ah, 2
+     mov dl, bl
+     int 21h
+     
+     mov ah, 2
+     mov dl, dh
+     int 21h
+      
+     jmp end
+             end:
+    
+   
+    
+main endp
+ newline proc
+    
+    mov ah,2
+    mov dl,0dh
+    int 21h
+    mov dl,0ah
+    int  21H   
+    
+    ret
+    newline endp
+    
+end main
